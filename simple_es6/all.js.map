@@ -1,1 +1,0 @@
-{"version":3,"sources":["hello_world.js"],"names":[],"mappings":";;AAAA,SAAS,YAAT,CAAsB,SAAtB,EAAiC,QAAjC,EAA2C;AAC1C,QAAO;AACN,sBADM;AAEN;AAFM,EAAP;AAIA","file":"all.js","sourcesContent":["function createPerson(firstName, lastName) {\n\treturn {\n\t\tfirstName,\n\t\tlastName\n\t}\n}"],"sourceRoot":"/source/"}
