@@ -8,65 +8,65 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-//Object literals
+// ------------ Object literals ------------
 function createPerson(firstName, lastName) {
-	return {
-		firstName: firstName,
-		lastName: lastName
-	};
+    return {
+        firstName: firstName,
+        lastName: lastName
+    };
 }
 
-//Creating class
+// ------------ Creating class ------------
 
 var Song = function () {
-	function Song(title, artist, duration) {
-		_classCallCheck(this, Song);
+    function Song(title, artist, duration) {
+        _classCallCheck(this, Song);
 
-		this.title = title;
-		this.artist = artist;
-		this.duration = duration;
-		this.isPlaying = false;
-	}
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration;
+        this.isPlaying = false;
+    }
 
-	_createClass(Song, [{
-		key: 'start',
-		value: function start() {
-			this.isPlaying = true;
-		}
-	}, {
-		key: 'stop',
-		value: function stop() {
-			this.isPlaying = false;
-		}
-	}]);
+    _createClass(Song, [{
+        key: 'start',
+        value: function start() {
+            this.isPlaying = true;
+        }
+    }, {
+        key: 'stop',
+        value: function stop() {
+            this.isPlaying = false;
+        }
+    }]);
 
-	return Song;
+    return Song;
 }();
 
-//default value
+//------------ default value ------------
 
 
 var Hat = function () {
-	function Hat(brand) {
-		var isEmpty = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+    function Hat(brand) {
+        var isEmpty = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
-		_classCallCheck(this, Hat);
+        _classCallCheck(this, Hat);
 
-		this.brand = brand;
-		this.isEmpty = isEmpty;
-	}
+        this.brand = brand;
+        this.isEmpty = isEmpty;
+    }
 
-	_createClass(Hat, [{
-		key: 'wearHat',
-		value: function wearHat() {
-			this.isEmpty = false;
-		}
-	}]);
+    _createClass(Hat, [{
+        key: 'wearHat',
+        value: function wearHat() {
+            this.isEmpty = false;
+        }
+    }]);
 
-	return Hat;
+    return Hat;
 }();
 
-//Creating instance of class
+// ------------ Creating instance of class ------------
 
 
 var song = new Song('Wonderwall', 'Oasis', '3:45');
@@ -75,101 +75,111 @@ song.isPlaying === false;
 var myhat = new Hat('Nike', true);
 myhat.wearHat();
 
-//Inheritance
+// ------------ INHERITANCE ------------
 // in js5 ->  Song.prototype = Object.create(SuperClass.prototype);
 
 var Music = function () {
-	function Music() {
-		var isPlaying = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+    function Music() {
+        var isPlaying = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
 
-		_classCallCheck(this, Music);
+        _classCallCheck(this, Music);
 
-		this.isPlaying = isPlaying;
-	}
+        this.isPlaying = isPlaying;
+    }
 
-	_createClass(Music, [{
-		key: 'start',
-		value: function start() {
-			this.isPlaying = true;
-		}
-	}]);
+    _createClass(Music, [{
+        key: 'start',
+        value: function start() {
+            this.isPlaying = true;
+        }
+    }]);
 
-	return Music;
+    return Music;
 }();
 
 var MySong = function (_Music) {
-	_inherits(MySong, _Music);
+    _inherits(MySong, _Music);
 
-	function MySong(title) {
-		var isPlaying = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+    function MySong(title) {
+        var isPlaying = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
 
-		_classCallCheck(this, MySong);
+        _classCallCheck(this, MySong);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MySong).call(this, isPlaying));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MySong).call(this, isPlaying));
 
-		_this.title = title;
-		return _this;
-	}
+        _this.title = title;
+        return _this;
+    }
 
-	return MySong;
+    return MySong;
 }(Music);
 
-//ARROW FUNCTION (and fighting with this)
+//------------ ARROW FUNCTION (and fighting with this) ------------
 
 
 var Contact = function Contact(name, email, button) {
-	_classCallCheck(this, Contact);
+    _classCallCheck(this, Contact);
 
-	this.name = name;
-	this.email = email;
+    this.name = name;
+    this.email = email;
 
-	button.onclick = function (event) {
-		sendMail(this.email);
-	};
+    button.onclick = function (event) {
+        sendMail(this.email);
+    };
 };
 
 var Contact_2 = function Contact_2(name, email, button) {
-	_classCallCheck(this, Contact_2);
+    _classCallCheck(this, Contact_2);
 
-	this.name = name;
-	this.email = email;
-	var that = this;
-	button.onclick = function (event) {
-		sendEmail(that.email);
-	};
+    this.name = name;
+    this.email = email;
+    var that = this;
+    button.onclick = function (event) {
+        sendEmail(that.email);
+    };
 };
 
 var Contact_3 = function Contact_3(name, email, button) {
-	var _this2 = this;
+    var _this2 = this;
 
-	_classCallCheck(this, Contact_3);
+    _classCallCheck(this, Contact_3);
 
-	this.name = name;
-	this.email = email;
-	button.onclick = function (event) {
-		sendEmail(_this2.email);
-	};
+    this.name = name;
+    this.email = email;
+    button.onclick = function (event) {
+        sendEmail(_this2.email);
+    };
 };
 
-//ARROW FUNCTION ALSO!
+// ------------ ARROW FUNCTION ALSO! ------------
 
 
 var oneToFive = [1, 2, 3, 4, 5];
 console.log(oneToFive);
 var twoToTen = oneToFive.map(function (n) {
-	return n * 2;
+    return n * 2;
 });
 console.log(twoToTen);
 
-// LET and CONST
+// ------------ LET and CONST ------------
 // let - declares a local variable in the block scope
 // now if statement with let - have scope!
 for (var _i = 0; _i < 5; _i++) {
-	console.log(_i); // 0, 1, 2 ...
+    console.log(_i); // 0, 1, 2 ...
 }
 if (typeof i != 'undefined') {
-	console.log(i); // i is not defined
+    console.log(i); // i is not defined
 } else {
-	console.log('i is undefined');
+    console.log('i is undefined');
 }
+//const or a constant declaration is where once, the variable you can't change. It's read-only
+var admin = "Andrew";
+//admin = 'Kenneth'; // will give error while transpiling
+console.log(admin);
+//but if it object - you can change it
+var admin_obj = { name: "Admin" };
+admin_obj.name = 'Kenneth';
+console.log(admin_obj.name, ', but not Admin!');
+
+// ------------ TEMPLATE STRINGS ------------
 //# sourceMappingURL=all.js.map

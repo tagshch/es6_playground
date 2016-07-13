@@ -30,6 +30,6 @@ gulp.task("react", function(){
     .pipe(gulp.dest("./react_es6"));
 });
 
-gulp.task('watch_js', function(){
+gulp.task('watch', function(){
     gulp.watch('./simple_es6/**/*.js',['js']);
 });
