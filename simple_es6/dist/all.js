@@ -1,5 +1,83 @@
 'use strict';
 
+(function () {
+    //Simple example of Set
+    /*
+     var set = new Set();
+     set.add('HR');
+     set.add('Finance');
+     set.add('Finance'); //Duplicate ignored
+      set.add({name: 'GIS', desc: 'Mapping'});
+      if (set.has('Finance')) console.log('Found it!');
+      set.delete('Finance'); //Delete single item
+     set.clear(); //Clear all items
+      console.log(set.size);
+     */
+
+    var obj = {
+        'a': 'Abba',
+        'b': 'Bob',
+        'c': 'Cmon'
+    };
+    var a = obj.a;
+    var b = obj.b;
+    var c = obj.c;
+    //console.log(a, b, c);
+    //console.log(`someone say ${a}, but others say ${b} and ${c}`)
+
+    // -------- PROMISES WITH ARROW FUNCTIONS  --------
+    /*
+     let promise = new Promise(
+     (resolve, reject) => {
+     setTimeout(()=>{
+     reject('result');
+     }, 1000)
+     }
+     );
+      promise.then(
+     result => {
+     console.log('Fullfiled!', result);
+     },
+     error => {
+     console.log('Rejected!', error)
+     }
+     )
+     */
+
+    //setTimeout(() => console.log('Gingo!'), 500);
+
+    //simple callback
+    /*
+     function sayIt(say){
+     say();
+     }
+     sayIt(function(){
+     console.log('say');
+     });
+     */
+
+    var promise = new Promise(function (resolve, reject) {
+        if (10 > 5) {
+            resolve('[resolved]');
+        } else {
+            reject('[rejected]');
+        }
+    });
+
+    console.log('-----------------');
+
+    promise.then(function (response) {
+        var result = response + '+ Bingo!';
+        return result;
+    }).then(function (result) {
+        var sentence = result + '+ sentence!';
+        return sentence;
+    }).then(function (sentence) {
+        console.log('Sentence = ' + sentence);
+    });
+})();
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -182,4 +260,10 @@ admin_obj.name = 'Kenneth';
 console.log(admin_obj.name, ', but not Admin!');
 
 // ------------ TEMPLATE STRINGS ------------
+
+var Email = function Email() {
+    _classCallCheck(this, Email);
+
+    this.email = 'some mail';
+};
 //# sourceMappingURL=all.js.map
