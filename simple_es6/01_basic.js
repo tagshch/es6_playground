@@ -18,3 +18,24 @@ console.log(admin);
 const admin_obj = { name: "Admin" };
 admin_obj.name = 'Kenneth';
 console.log(admin_obj.name, ', but not Admin!');
+
+console.log('--------------------------------');
+
+// ------------ SPREAD OPERATORS AND REST ------------
+
+function something(a,b,c){
+    console.log(a,b,c);
+}
+something(...[1,2,3]);
+
+function something2(...everything){
+    console.log(everything);
+}
+something2(1,2,3);
+something2([1,2,3,4], 5, 6);
+
+let arr = [1,2,3];
+let arr_concat = [6,5,...arr,0];
+console.log("concatination:", arr_concat);
+
+

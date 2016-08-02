@@ -44,3 +44,7 @@ console.log(width, height, title1);
 
 let {width:w1=100, height:h1=200, title2} = options;
 console.log(w1, h1, title2);
+
+
+[a, ...rest] = [1, 2, 3, 4, 5];
+console.log(a, rest);
