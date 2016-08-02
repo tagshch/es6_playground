@@ -35,7 +35,7 @@ class Hat{
 
 // ------------ Creating instance of class ------------
 var song = new Song('Wonderwall','Oasis','3:45');
-song.isPlaying === false;
+song.isPlaying = false;
 
 var myhat = new Hat('Nike',true);
 myhat.wearHat();
@@ -63,9 +63,6 @@ class Email{
     constructor(){
         this.email = 'some mail';
     }
-
-
-
 }
 
 
