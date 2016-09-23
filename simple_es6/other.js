@@ -1,5 +1,5 @@
 /* ---------- SET ---------- */
-var set = new Set();
+let set = new Set();
 set.add('HR');
 set.add('Finance');
 set.add('Finance'); //Duplicate ignored
@@ -17,7 +17,10 @@ console.log(set.size); // 0 size
 
 console.log('----------------');
 
-let deposit = 540;
+
+
+
+let deposit = 5400000;
 let time = 20;
 let part = deposit/time;
 
