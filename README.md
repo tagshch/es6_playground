@@ -1,1 +1,1 @@
-# es6_playground
+# Javascript_playground (es5 / es6)
