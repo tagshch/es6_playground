@@ -285,8 +285,36 @@ function getDecimal(x){
 log(getDecimal(12.132));
 
 
+// ======== OBJECT IN JS =========
+log("\nOBJECT IN JS");
 
+var human = {
+  name: 'Gringo',
+  age: '52'
+}
 
+log(human);
+
+var ageKey = 'age';
+var nameKey = 'name';
+
+// with if-in operator
+if(nameKey in human) log('Has "name" key!');
+if(ageKey in human) log('Has "age" key!');
+
+// with undefined comparison
+if(human.age) log('Has "age" key!');
+if(human.details == undefined) log('No "details" key!')
+
+// ====== ARR - PASS BY REF ======
+var arr = [1,2,3];
+var arr2 = arr;
+arr2[0] = 5;
+log(arr, arr2);
+
+var arr3 = [].concat(arr);
+arr3[0] = 1;
+log(arr3);
 
 
 
