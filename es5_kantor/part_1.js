@@ -317,5 +317,78 @@ arr3[0] = 1;
 log(arr3);
 
 
+// ========= ERASTOFEN REALIZATION ===========
+function genarr(n){
+  var arr = [];
+  for(var i = 2; i < n; i++) arr.push(i);
+  return arr;
+}
+
+function erastofen(arr){
+  var _arr = [].concat(arr);
+  
+  for(var i = 0; i < arr.length; i++){
+    var item = arr[i];
+    for(var j = i + 1; j < _arr.length; j++){
+      if(_arr[j]%item == 0) _arr.splice(j, 1 );
+    }
+  }
+
+  return _arr;
+}
+
+var arr = genarr(100);
+var simpleArr = erastofen(arr);
+
+log(simpleArr);
 
 
+// ======== SINGLE RELATIVE LIST ============
+
+function Node(value){
+  this.value = value;
+  this.next = null;
+}
+
+function List(){
+ 	this._length = null;
+  this.head = null;
+}
+
+List.prototype.add = function(value){
+  var node = new Node(value);
+  var currentNode = this.head;
+  
+  // empty list
+  if(!currentNode){
+    this.head = node;
+    this._length++;
+    return node;
+  }
+  
+  // non-empty list
+  while(currentNode.next){
+    currentNode = currentNode.next;
+  }
+  
+  currentNode.next = node;
+  this._length++;
+  
+  return node;
+}
+
+List.prototype.printList = function(){
+  var currentNode = this.head;
+  log(this.head);
+  while(currentNode.next){
+    currentNode = currentNode.next;
+    log(currentNode);
+  }
+}
+
+var sl = new List();
+sl.add(1);
+sl.add(2);
+sl.add(3);
+
+sl.printList();
