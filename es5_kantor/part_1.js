@@ -342,3 +342,33 @@ var simpleArr = erastofen(arr);
 
 log(simpleArr);
 
+
+// ========= EVERY / SOME ===========
+var arr = [1,2,3,4,5,6,7,8];
+
+function isBiggerThanFive(nmb){
+  return nmb > 5;
+}
+
+var everyBigger = arr.every(isBiggerThanFive); // false
+var someBigger = arr.some(isBiggerThanFive); // true
+
+log(everyBigger, someBigger);
+
+
+// ========= REDUCE / REDUCE RIGHT ==========
+
+var res1 = arr.reduce(function(sum, current){
+  return (sum + current);
+}, 0);
+
+var res2 = arr.reduce(function(sum, current){
+  return (sum + current);
+});
+
+var res3 = arr.reduceRight(function(sum, current){
+  return (sum + 2*current);
+}, 0)
+
+log('REDUCE RESULT:',res1, res2);
+log('RIGHT REDUCE RESULT:', res3);
