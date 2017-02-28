@@ -40,19 +40,14 @@ var generateTemplateString = (function () {
 
         if (!fn) {
             // Replace ${expressions} (etc) with ${map.expressions}.
-
-            var regex_1 = /\$\{([\s]*[^;\s\{]+[\s]*)\}/g;
-
-            var sanitized = template.replace(regex_1, function (_, match) {
+            var sanitized = template.replace(/\$\{([\s]*[^;\s\{]+[\s]*)\}/g, function (_, match) {
                 return `\$\{map.${match.trim()}\}`;
             });
 
             // Afterwards, replace anything that's not ${map.expressions}' (etc) with a blank string.
-            var regex_2 = /(\$\{(?!map\.)[^}]+\})/g;
+            sanitized = sanitized.replace(/(\$\{(?!map\.)[^}]+\})/g, '');
 
-            sanitized = sanitized.replace(regex_2, '');
-
-            fn = Function('map', `return \`${sanitized}\``);
+            fn = cache[template] = Function('map', `return \`${sanitized}\``);
         }
 
         return fn;
