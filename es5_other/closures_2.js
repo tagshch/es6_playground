@@ -13,28 +13,26 @@ function parseFunction(str){
 var obj = {
     returnGreetingFunction: function(){
 
+        var that = this;
+        self = this;
+
+        console.log(self);
+        console.log(that);
+
         // ---- VERSION 1. NOT WORK ----
         if(false){
-
-            var that = this;
-
             return function(text){
                 var greet = that.GREETING;
                 console.log(greet + text);
             };
-
         }
 
-        // ---- VERSION 2. WORK ----
+        // ---- VERSION 2. WILL WORK ----
         if(true){
-
-            self = this;
-
             return function(text){
                 var greet = self.GREETING;
                 console.log(greet + text);
             };
-
         }
 
     },
