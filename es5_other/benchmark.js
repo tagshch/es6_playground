@@ -1,16 +1,29 @@
 var arr = [];
-for(var i = 0; i < 1000; i++) arr[i] = 0;
+for(var i = 0; i < 10000; i++) arr[i] = 0;
 
-function foreachLoop(){
-    for(var key in arr) arr[key]++;
+function forLoop(arr){
+    for(var i = 0; i < arr.length; i++);
 }
 
-function forLoop(){
-    for(var i = 0; i < arr.length; i++) arr[i]++;
+function foreachLoop(arr){
+    for(var key in arr);
 }
 
-function mapLoop(){
-    arr = arr.map(function(elem, i){ return elem; });
+function whileLoop(arr){
+    var nmb = arr.length;
+    while(nmb) nmb--;
+}
+
+function mapLoop(arr){
+    arr.map(function(elem){ return elem; });
+}
+
+function filterLoop(arr){
+    arr.filter(function(elem){ return elem; });
+}
+
+function reduceLoop(arr){
+    arr.reduce(function(agg, elem){ return elem; }, 0)
 }
 
 function bench(f, data){
@@ -28,18 +41,24 @@ function bench(f, data){
 var time1 = 0;
 var time2 = 0;
 var time3 = 0;
+var time4 = 0;
+var time5 = 0;
+var time6 = 0;
 
-for(var i = 0; i < 50; i++){
-    time1 += bench(foreachLoop);
-    time2 += bench(forLoop);
-    time3 += bench(mapLoop);
+for(var i = 0; i < 1; i++){
+    time1 += bench(forLoop, arr);
+    time2 += bench(foreachLoop, arr);
+    time3 += bench(whileLoop, arr);
+    time4 += bench(mapLoop, arr);
+    time5 += bench(filterLoop, arr);
+    time6 += bench(reduceLoop, arr);
 }
 
-console.log(time1,time2,time3);
+console.log(time1, time2, time3, time4, time5, time6);
 
 // 3rd way
-console.time('foreachLoop');
-bench(foreachLoop);
-console.timeEnd('foreachLoop');
+//console.time('foreachLoop');
+//bench(foreachLoop);
+//console.timeEnd('foreachLoop');
 
 
