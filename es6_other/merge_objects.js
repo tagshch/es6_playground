@@ -1,12 +1,12 @@
 function mergeObjects(){
 
-    var args = Array.prototype.slice.call(arguments);
+    let args = Array.prototype.slice.call(arguments);
 
     return args.reduce(function(all, one){
         return Object.assign(all, one);
     }, {});
 }
 
-var merged = mergeObjects({ bingo: true }, { bongo: true }, { bingo: false}, {});
+let merged = mergeObjects({ uno: { bingo: [1,2] } }, { bongo: true }, { uno:{ bingo: [3,4,5] }}, {});
 
 console.log(merged);
