@@ -1,0 +1,237 @@
+/* ===== 4. PROBLEMS ===== */
+
+(function(){
+
+    function funky(o){
+        o = null;
+    }
+
+    var x = [];
+    funky(x);
+    console.log(x);
+
+}());
+
+function add(x, y){
+    return x + y;
+}
+
+function mul(x, y){
+    return x * y;
+}
+
+function addf(x){
+    return function(y){
+        return x + y;
+    }
+}
+
+function applyf(binary){
+    return function(x){
+        return function(y){
+            return binary(x, y);
+        }
+    }
+}
+
+(function(){
+
+    var result1 = applyf(add)(3)(4);
+
+    var result2 = applyf(mul)(3)(5);
+
+    console.log(result1, result2);
+
+}());
+
+// === CURRYING ===
+
+function curry_1(func, first){
+    return function(second){
+        return func(first, second);
+    }
+}
+
+function curry_2(func, first){
+    return applyf(func)(first);
+}
+
+(function(){
+
+    var _add = curry_1(add, 10);
+
+    var result = _add(4);
+
+    console.log(result);
+
+}());
+
+(function(){
+
+    var inc1 = addf(1);
+    var inc2 = applyf(add)(1);
+    var inc3 = curry_1(add, 1);
+
+    console.log(
+        inc1(1),
+        inc2(2),
+        inc3(3)
+    )
+
+}());
+
+
+function methodize(func){
+    return function(second){
+        return func(this, second);
+    }
+}
+
+function demethodize_1(func){
+    return function(x, y){
+        return func.call(x, y);
+    };
+}
+
+function demethodize_2(func){
+    console.log(func);
+    return function(that, arr){
+        return func.apply(that, arr);
+    }
+}
+
+(function(){
+
+    console.log('------------------------------');
+
+    Number.prototype.add = methodize(add);
+
+    var result = (365).add(4);
+
+    console.log(result);
+
+    var result_1 = demethodize_1(Number.prototype.add)(50, 60); // 50 - is scope/object contex, equal this
+    var result_2= demethodize_2(Number.prototype.add)(50, [60]); // 50 - is scope/object contex, equal this
+
+    console.log(result_1, result_2);
+
+}());
+
+function twice(binary){
+    return function(x){
+        return binary(x, x);
+    }
+}
+
+(function(){
+
+    var double = twice(add);
+    var square = twice(mul);
+
+    var result_1 = double(11);
+    var result_2 = square(11);
+
+    console.log(result_1, result_2);
+
+}());
+
+function compose_a(binary_1, binary_2){
+    return function(x){
+        return binary_2(binary_1(x));
+    }
+}
+
+function compose_b(binary_1, binary_2){
+    return function(x, y, z){
+        return binary_2(binary_1(x, y), z);
+    }
+}
+
+(function(){
+
+    var double = twice(add);
+    var square = twice(mul);
+
+    var result_1 = compose_a(double, square)(3);
+    var result_2 = compose_b(add, mul)(2, 3, 5);
+
+    console.log(result_1, result_2);
+
+}());
+
+function once(func){
+    return function(){
+        if(func == null) return false;
+        var f = func;
+        func = null;
+        return f.apply(this, arguments);
+    }
+}
+
+(function(){
+
+    var add_once = once(add);
+
+    var result_1 = add_once(3, 4);
+
+    var result_2 = add_once(3, 4);
+
+    console.log(result_1, result_2);
+
+}());
+
+function counterf(value){
+    return {
+        inc: function(){
+            value += 1;
+            return value;
+        },
+        dec: function(){
+            value -= 1;
+            return value;
+        }
+
+    }
+}
+
+(function(){
+
+    var counter = counterf(10);
+
+    console.log(
+        counter.inc(),
+        counter.dec()
+    )
+
+}());
+
+function revocable(func){
+    return {
+        blocked: false,
+        invoke: function(){
+            if(this.blocked){
+                console.log('Blocked!');
+                return;
+            }
+            func.apply(this, arguments);
+        },
+        revoke: function(){
+            this.blocked = true;
+        }
+    }
+}
+
+(function(){
+
+    console.log('-------------------');
+
+    var temp = revocable(console.log);
+
+    temp.invoke(10);
+
+    temp.revoke();
+
+    temp.invoke(10);
+
+
+}());

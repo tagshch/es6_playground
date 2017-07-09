@@ -1,0 +1,103 @@
+/*
+
+PROGRAMM:
+1. Programming style and your brain.
+2. And then there was JS
+3. Function The Ultimate
+4. Problems
+5. Monads and Gonads
+6. The Metamorphosis of AJAX
+
+*/
+
+/*
+===== 1. PROGRAMMING STYLE AND YOUR BRAIN =====
+
+- Some styles are better then other one.
+
+- Read book "Thinking fast ... slow" by Daniel Kahneman
+
+- Two systems - Head and Gut.
+
+- Prefer forms that are error resistant.
+
+- "That hardly ever happens" - is another way of saying "It happens".
+
+- A good style can help produce better programs. Style is should not be about
+personal preference and self-expression.
+
+- Debugging is wasting time. To find error, etc. Your goal - reduce error rate to zero.
+
+- Read "The elements of style" by William Strunk. http://www.crockford.com/wrrrld/style.html
+
+- Programs must communicate clearly to people.
+
+- Use elements of good composition where applicable. For example, use a space after comma, not before.
+
+- Immediately Invocable Function Expression - IIFE. (function(){ console.log('bingo'); }());
+
+
+- Avoid with statement. Its confusion.
+
+- Confusion must be avoided.
+
+- Always use ===, never == .
+
+"IF THERE IS A FEATURE OF A LANGUAGE THAT IS SOMETIMES PROBLEMATIC,
+AND IF IT CAN BE REPLACED WITH ANOTHER FEATURE THAT IS MORE RELIABLE,
+THEN ALWAYS USE THE MORE RELIABLE FEATURE" - DUGLAS CROCKFORD
+
+- AVOID FORMS THAT ARE DIFFICULT TO DISTINGUISH FROM COMMON ERRORS
+
+- if(a = b){ ... } is equal a = b; if(a) { ... }.
+
+ === 1.6 AVOID CONFUSING CODE (A) ===
+
+- Declare all variables at the top of function
+
+- Declare all function before you call them.
+
+- In "for (var i ...) { ... }" - variable i is not scoped to the loop.
+
+- Write in the language you are writing in.
+
+=== 1.7 AVOID CONFUSING CODE (B) ===
+
+- Global variables are evil. Avoid global variabled.
+
+- When using global variables, be explicit - UPPER_CASE
+
+- Global variables should as rare as hens teeth and stick out like a sore thumb.
+
+- "var a = b = 0" is equal "b = 0; var a = 0;". Avoid it!
+
+- Do not "x++", better do "x += 1"
+
+"FOR NO COST, BY ADOPTING A MORE RIGOROUS STYLE, MANY CLASSES
+OF ERRORS CAN AUTOMATICALLY AVOIDED" - DUGLAS CROCKFORD.
+
+- Always put curly braces in if - "if(a){ ... }"
+
+"AS OUR PROCESSES BECOME MORE AGILE, OUR CODING
+MUST BE MORE RESILIENT" - DUGLAS CROCKFORD.
+
+- Designing a programming style demands discipline. It is not selecting features
+because the are liked, or pretty, or familiar.
+
+=== 1.8 USING JSLINT ===
+
+=== PERFORMANCE ===
+
+- Performance specific code is usually crufty.
+
+- Clean code is easier to reason about.
+
+- "Premature optimization is root of all evil" by Donald Knuth.
+
+- Most of the code has negligible impact on performance. Only optimize the code that
+ is taking the time.
+
+- Algorithm replacement is vastly more effective than code fiddling.
+
+*/
+
