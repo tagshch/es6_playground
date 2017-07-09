@@ -1,15 +1,13 @@
 /* ===== 5. MONADS AND GONADS ===== */
 
-
-function unit(value){
-
-}
-
-function bind(monad, value){
-
-}
-
-/* MONAD AXIOMS
+/*
+* === MONAD BUILD FUNCTIONS ===
+*
+* function unit(value){}
+*
+* function bind(monad, value){}
+*
+* === MONAD AXIOMS ===
 *
 * bind(unit(value), f) ==== f(value)
 * bind(monad, unit) ==== monad
@@ -17,7 +15,7 @@ function bind(monad, value){
 *
 * MONAD functions is macroid
 *
-* Axioms
+* === Axioms ===
 *
 * unit(value).bind(f) ==== f(value)
 * monad.bind(unit) ==== monad
@@ -90,3 +88,70 @@ function bind(monad, value){
     monad.log(); // but also work log
 
 }());
+
+
+(function(){
+
+    // MAYBE TYPE
+
+    function MONAD(modifier){
+        var prototype = Object.create(null);
+
+        function unit(value){
+            var monad = Object.create(prototype);
+
+            monad.bind = function(func, args){
+                var _args = [value].concat(Array.prototype.slice.apply(args || []));
+                return func.apply(undefined, _args);
+            };
+
+            if(typeof modifier === 'function'){
+                modifier(monad, value);
+            }
+
+            return monad;
+        }
+
+        return unit;
+    }
+
+    var maybe = MONAD(function(monad, value){
+        if(value === null || value == undefined){
+            monad.is_null = true;
+            monad.bind = function(){
+                return monad;
+            }
+        }
+    });
+
+    var monad_1 = maybe(null); // will trigger reassign bind method to modifier method
+    var monad_2 = maybe("Bongo!");
+
+    monad_1.bind(console.log);
+    monad_2.bind(console.log);
+
+}());
+
+/*
+* PROMISES
+*
+* - Promises are an excellent mechanism for managing asynchronicity.
+*
+* - A promise is an object that represents a possible future value
+*
+* - Every promise has a corresponding resolver that is used to ultimately assing
+* a value to the promise.
+*
+* - A promise can have one of three states: 'kept', 'broken' or 'pending'.
+*
+* A PROMISE IS A MONAD
+*
+* - The value is not known when the monad is made.
+*
+* - Each promise is linked to two resolver functions, keep() and break(),
+* that determine the promise's success and value
+*
+* - when() can take two functions, bind() only one.
+*
+*
+* */
